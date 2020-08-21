@@ -1,0 +1,49 @@
+<!DOCTYPE HTML>
+<html>
+
+<body>
+    <script>
+        "use strict";
+
+        // The postfix and prefix forms
+        let a = 1, b = 1;
+        let c = ++a;
+        let d = b++;
+
+        alert(`a = ${a}`) // 2
+        alert(`b = ${b}`) // 2
+        alert(`c = ${c}`) // 2
+        alert(`d = ${d}`) // 1
+
+        // Assignment result
+        a = 2;
+        let x = 1 + (a *= 2);
+
+        alert(`a = ${a}`) // 4
+        alert(`x = ${x}`) // 5
+
+        // Type conversions
+        alert("" + 1 + 0) // "10"
+        alert("" - 1 + 0) // -1
+        alert(true + false) // 1
+        alert(6 / "3") // 2
+        alert("2" * "3") // 6
+        alert(4 + 5 + "px") // "9px"
+        alert("$" + 4 + 5) // "$45"
+        alert("4" - 2) // 2
+        alert("4px" - 2) // NaN
+        alert(7 / 0) // Infinity
+        alert("  -9  " + 5) // "  -9  5"
+        alert("  -9  " - 5) // -14
+        alert(null + 1) // 1
+        alert(undefined + 1) // NaN
+        alert(" \t \n" - 2) // -2
+
+        // Fix the addition
+        a = +prompt("First number?", 1);
+        b = +prompt("Second number?", 2);
+        alert(a + b); // fixed
+    </script>
+</body>
+
+</html>
