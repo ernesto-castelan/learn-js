@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html>
+
+<body>
+<script>
+
+"use strict";
+
+// if (a string with zero)
+// non-empty string evaluates as true
+if ("0") {
+    alert( 'Hello' ); // will be shown
+}
+
+// The name of JavaScript
+let response = prompt('What is the "official" name of JavaScript?', '');
+if (response == 'ECMAScript') {
+    alert("Right!");
+}
+else {
+    alert("Didn’t know? ECMAScript!");
+}
+
+// Show the sign
+let numberChoice = prompt("Choose a number", "");
+if (numberChoice > 0) alert(1);
+else if (numberChoice < 0) alert(-1);
+else alert(0);
+
+// Rewrite 'if' into '?'
+let a = 0, b = 0;
+let result = (a + b < 4) ? 'Below' : 'Over';
+
+// Rewrite 'if..else' into '?'
+// This is horrendous
+let login = '';
+let message = (login == 'Employee') ? 'Hello'
+            : (login == 'Director') ? 'Greetings'
+            : (login == '') ? 'No login' : '';
+
+</script>
+</body>
+
+</html>
