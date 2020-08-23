@@ -1,0 +1,32 @@
+<!DOCTYPE HTML>
+<html>
+
+<body>
+<script>
+
+"use strict";
+
+// What's the result of OR?
+alert( null || 2 || undefined ); // 2
+
+// What's the result of OR'ed alerts?
+// alert() returns nothing (undefined), so the values are: falsy, truthy, falsy
+// Value 2 is returned by the OR operator
+// but to reach this value the first alert must be excuted
+alert( alert(1) || 2 || alert(3) ); // 1 then 2
+
+// What is the result of AND?
+alert( 1 && null && 2 ); // null
+
+// What is the result of AND'ed alerts?
+alert( alert(1) && alert(2) ); // 1 then undefined
+
+// The result of OR AND OR
+// "2 && 3" has higher precedence and returns 3
+// "null || 3" returns 3 and causes short-circuit
+alert( null || 2 && 3 || 4 ); // 3
+
+</script>
+</body>
+
+</html>

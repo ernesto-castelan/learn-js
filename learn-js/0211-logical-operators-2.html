@@ -1,0 +1,55 @@
+<!DOCTYPE HTML>
+<html>
+
+<body>
+<script>
+
+"use strict";
+
+// Check the range between
+let age = prompt("What is your age", "");
+if (age >= 14 && age <= 90) {
+    alert("Nice, your age is in the range 14-90");
+}
+
+// Check the range outside
+if (age < 14 || age > 90) {
+    alert("Sorry, your age is not in the range 14-90");
+}
+// Another option is to negate the original condition
+// if (!(age >= 14 && age <= 90))
+
+// A question about "if"
+// truthy OR falsy => true, WILL execute
+if (-1 || 0) alert( 'first' );
+// truthy AND falsy => false, will NOT execute
+if (-1 && 0) alert( 'second' );
+// falsy OR (truthy AND truthy) => falsy OR true => true, WILL execute
+if (null || -1 && 1) alert( 'third' );
+
+// Check the login
+let username = prompt("Login username");
+if (username == "Admin") {
+    let password = prompt("Login password");
+    if (password == "TheMaster") {
+        alert("Welcome!");
+    }
+    else if (password == null) {
+        alert("Cancelled");
+    }
+    else {
+        alert("Wrong password");
+    }
+}
+else if (username == null) {
+    alert("Cancelled");
+}
+else {
+    alert("I don't know you");
+}
+
+
+</script>
+</body>
+
+</html>
