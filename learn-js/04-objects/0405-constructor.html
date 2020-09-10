@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>
+<html>
+
+<body>
+<script>
+"use strict";
+
+// Two functions – one object
+let theGodObject = {};
+function A() { return theGodObject; }
+function B() { return theGodObject; }
+
+let a = new A;
+let b = new B;
+
+console.log( a == b ); // true
+
+// Create new Calculator
+function Calculator() {
+  this.read = function() {
+    this.valA = +prompt('Enter first value', '0');
+    this.valB = +prompt('Enter second value', '0');
+  };
+
+  this.sum = function() {
+    return this.valA + this.valB;
+  };
+
+  this.mul = function() {
+    return this.valA * this.valB;
+  };
+}
+
+let calculator = new Calculator();
+calculator.read();
+alert( "Sum=" + calculator.sum() );
+alert( "Mul=" + calculator.mul() );
+
+// Create new Accumulator
+function Accumulator(startingValue) {
+  this.value = startingValue
+
+  this.read = function() {
+    this.value += +prompt('Enter a value', '0');
+  }
+}
+
+let accumulator = new Accumulator(1);
+accumulator.read();
+accumulator.read();
+alert(accumulator.value);
+
+</script>
+</body>
+
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE HTML>
+<html>
+
+<body>
+<script>
+"use strict";
+
+// Using "this" in object literal
+function makeUser() {
+  return {
+    name: "John",
+    ref: this
+  };
+};
+
+let user = makeUser();
+
+// makeUser is called as a function, not as a method
+// so `this` inside the function is undefined
+// and ref is asigned the value `undefined`
+// console.log( user.ref.name ); // Error: ref is undefined
+console.log( user.ref )
+
+// Create a calculator
+let calculator =  {
+  read() {
+    this.valA = +prompt('Enter first value');
+    this.valB = +prompt('Enter second value');
+  },
+
+  sum() {
+    return this.valA + this.valB;
+  },
+
+  mul() {
+    return this.valA * this.valB;
+  },
+};
+
+calculator.read();
+alert( calculator.sum() );
+alert( calculator.mul() );
+
+// Chaining
+let ladder = {
+  step: 0,
+
+  up() {
+    this.step++;
+    return this;
+  },
+
+  down() {
+    this.step--;
+    return this;
+  },
+
+  showStep: function() { // shows the current step
+    alert( this.step );
+  }
+};
+
+ladder.up().up().down().showStep(); // 1
+
+</script>
+</body>
+
+</html>
