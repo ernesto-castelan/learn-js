@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html>
+
+<body>
+<script>
+  "use strict";
+
+  // Sum numbers from the visitor
+  let firstNumber = +prompt('First number');
+  let secondNumber = +prompt('Second number');
+  alert(`The sum is ${firstNumber + secondNumber}`);
+
+  // Why 6.35.toFixed(1) == 6.3?
+  alert( 1.35.toFixed(1) ); // 1.4
+  alert( 6.35.toFixed(1) ); // 6.3
+  alert( Math.round(63.5) / 10 ); // 6.4
+
+  // Repeat until the input is a number
+  function readNumber() {
+    let str;
+    do {
+      str = prompt('Select a number');
+      if (str === '' || str === null) {
+        return null;
+      }
+    } while (!isFinite(str));
+    return +str;
+  }
+
+  // An occasional infinite loop
+  let i = 0;
+  while (i != 10) {
+    i += 0.2;
+    if (i >= 9.8 && i <= 10.2) alert(i); // Never exactly 10.0
+    if (i > 11) break; // It's enough now
+  }
+
+  // A random number from min to max
+  function random(min, max) {
+    let range = max - min;
+    return min + Math.random() * range;
+  }
+
+  // A random integer from min to max
+  function randomInteger(min, max) {
+    return Math.floor(random(min, max + 1));
+  }
+
+</script>
+</body>
+
+</html>
