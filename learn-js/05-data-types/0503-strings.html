@@ -1,0 +1,34 @@
+<!DOCTYPE HTML>
+<html>
+
+<body>
+<script>
+  "use strict";
+
+  // Uppercase the first character
+  function ucFirst(str) {
+    if (!str) return '';
+    return str[0].toUpperCase() + str.slice(1);
+  }
+
+  // Check for spam
+  function checkSpam(str) {
+    let lowerStr = str.toLowerCase();
+    return (lowerStr.includes('viagra') || lowerStr.includes('xxx'));
+  }
+
+  // Truncate the text
+  function truncate(str, maxLenght) {
+    if (str.length <= maxLenght) return str;
+    return (str.slice(0, maxLenght - 1) + '…');
+  }
+
+  // Extract the money
+  function extractCurrencyValue(str) {
+    return +str.slice(1);
+  }
+
+</script>
+</body>
+
+</html>
