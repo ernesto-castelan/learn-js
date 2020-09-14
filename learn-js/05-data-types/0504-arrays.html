@@ -1,0 +1,77 @@
+<!DOCTYPE HTML>
+<html>
+
+<body>
+<script>
+  "use strict";
+
+  // Is array copied?
+  let fruits = ["Apples", "Pear", "Orange"];
+  let shoppingCart = fruits;
+
+  shoppingCart.push("Banana");
+  console.log( fruits.length ); // 4
+
+  // Array operations.
+  let styles = ["Jazz", "Blues"];
+  console.log(styles);
+
+  styles.push("Rock-n-Roll");
+  console.log(styles);
+
+  let middlePos = Math.floor(styles.length / 2);
+  styles[middlePos] = "Classics";
+  console.log(styles);
+
+  console.log(styles.shift());
+  console.log(styles);
+
+  styles.unshift("Rap", "Reggae");
+  console.log(styles);
+
+  // Calling in an array context
+  let arr = ["a", "b"];
+
+  arr.push(function() {
+    alert( this );
+  })
+
+  // this = arr
+  // alerts "a,b,function(){...}"
+  arr[2]();
+
+  // Sum input numbers
+  function sumInput() {
+    let values = [];
+    while(true) {
+      let str = prompt('Input a value');
+      if (str == null || str == '' || !isFinite(str)) break;
+      values.push(+str);
+    }
+
+    let sum = 0;
+    for (let val of values) {
+      sum += val;
+    }
+    return sum;
+  }
+
+  alert(sumInput());
+
+  // A maximal subarray O(n²)
+  function getMaxSubSum(values) {
+    let result = 0;
+    for (let start = 0; start < values.length; start++) {
+      let sum = 0;
+      for (let pos = start; pos < values.length; pos++) {
+        sum += values[pos];
+        result = Math.max(result, sum);
+      }
+    }
+    return result;
+  }
+
+</script>
+</body>
+
+</html>
