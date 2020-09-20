@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html>
+
+<body>
+<script>
+  "use strict";
+
+  // Store "unread" flags
+  let messages = [
+    {text: "Hello", from: "John"},
+    {text: "How goes?", from: "John"},
+    {text: "See you soon", from: "Alice"}
+  ];
+
+  let isRead = new WeakSet();
+  isRead.add(messages[0]);
+  isRead.add(messages[1]);
+
+  console.log( isRead ); // 2 items
+  console.log( isRead.has(messages[0]) ); // true
+
+  messages.shift();
+  console.log( isRead ); // 1 item when garbage collected
+
+  // Store read dates
+  messages = [
+    {text: "Hello", from: "John"},
+    {text: "How goes?", from: "John"},
+    {text: "See you soon", from: "Alice"}
+  ];
+
+  let readDates = new WeakMap();
+  readDates.set(messages[0], new Date());
+  readDates.set(messages[1], new Date());
+
+  console.log( readDates ); // 2 items
+  console.log( readDates.get(messages[0]) ); // a date
+
+  messages.shift();
+  console.log( readDates ); // 1 item when garbage collected
+
+</script>
+</body>
+
+</html>
