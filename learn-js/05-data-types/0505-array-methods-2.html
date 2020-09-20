@@ -1,0 +1,105 @@
+<!DOCTYPE HTML>
+<html>
+
+<body>
+<script>
+  "use strict";
+
+  // Create an extendable calculator
+  function Calculator() {
+
+    this.operations = {
+      '+':(a, b) => a + b,
+      '-':(a, b) => a - b,
+    };
+
+    this.addMethod = function(name, func) {
+      this.operations[name] = func;
+    };
+
+    this.calculate = function(str) {
+      let tokens = str.split(' ');
+      let valA = +tokens[0];
+      let oper =  tokens[1];
+      let valB = +tokens[2];
+
+      return this.operations[oper](valA, valB);
+    };
+  }
+
+  // Map to names
+  let john = { name: "John", age: 25 };
+  let pete = { name: "Pete", age: 30 };
+  let mary = { name: "Mary", age: 28 };
+  let users = [ john, pete, mary ];
+
+  let names = users.map(usr => usr.name);
+
+  console.log( names ); // John, Pete, Mary
+
+  // Map to objects
+  john = { name: "John", surname: "Smith", id: 1 };
+  pete = { name: "Pete", surname: "Hunt", id: 2 };
+  mary = { name: "Mary", surname: "Key", id: 3 };
+  users = [ john, pete, mary ];
+
+  let usersMapped = users.map(usr => ({
+    name: usr.name,
+    surname: usr.surname,
+    fullName: usr.name + ' ' + usr.surname,
+    id: usr.id
+  }));
+
+  console.log( usersMapped[0].id ); // 1
+  console.log( usersMapped[0].fullName ); // John Smith
+
+  // Sort users by age
+  function sortByAge(arr) {
+    arr.sort((a, b) => a.age - b.age);
+  }
+
+  john = { name: "John", age: 25 };
+  pete = { name: "Pete", age: 30 };
+  mary = { name: "Mary", age: 28 };
+  let arr = [ pete, john, mary ];
+
+  sortByAge(arr);
+
+  console.log(arr[0].name); // John
+  console.log(arr[1].name); // Mary
+  console.log(arr[2].name); // Pete
+
+  // Shuffle an array
+  function shuffle(arr) {
+    for (let i = arr.length - 1; i >= 1; i--) {
+      let p = Math.floor(Math.random() * (i + 1));
+      let aux = arr[i];
+      arr[i] = arr[p];
+      arr[p] = aux;
+    }
+  }
+
+  arr = [1, 2, 3];
+  shuffle(arr);
+  console.log(arr);
+  shuffle(arr);
+  console.log(arr);
+  shuffle(arr);
+  console.log(arr);
+
+  // Get average age
+  function getAverageAge(arr) {
+    return arr.reduce((acc, item) => acc + item.age, 0) / arr.length;
+  }
+
+  john = { name: "John", age: 25 };
+  pete = { name: "Pete", age: 30 };
+  mary = { name: "Mary", age: 29 };
+  arr = [ john, pete, mary ];
+
+  console.log( getAverageAge(arr) ); // (25 + 30 + 29) / 3 = 28
+
+</script>
+</body>
+
+</html>

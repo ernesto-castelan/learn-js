@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html>
+
+<body>
+<script>
+  "use strict";
+
+  // Translate border-left-width to borderLeftWidth
+  function camelize(str) {
+    let capitalize = function(value) {
+      if (value == '') return '';
+      return value[0].toUpperCase() + value.slice(1);
+    };
+
+    let list = str.split('-');
+    return [list[0]].concat(list.slice(1).map(capitalize)).join('');
+  }
+
+  // Filter range
+  function filterRange(arr, a, b) {
+    return arr.filter(value => (value >= a && value <= b));
+  }
+
+  // Filter range "in place"
+  function filterRangeInPlace(arr, a, b) {
+    arr.forEach((value, index, arr) => {
+      if (value < a || value > b) {
+        arr.splice(index, 1);
+      }
+    });
+  }
+
+  // Sort in decreasing order
+  let arr = [5, 2, 1, -10, 8];
+  arr.sort((a,b) => b - a);
+  console.log( arr ); // 8, 5, 2, 1, -10
+
+  // Copy and sort array
+  function copySorted(arr) {
+    let newArr = arr.slice();
+    newArr.sort()
+    return newArr;
+  }
+
+  arr = ["HTML", "JavaScript", "CSS"];
+  let sorted = copySorted(arr);
+  console.log( sorted ); // CSS, HTML, JavaScript
+  console.log( arr ); // HTML, JavaScript, CSS (no changes)
+
+</script>
+</body>
+
+</html>
