@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html>
+
+<body>
+<script>
+  "use strict";
+
+  // Create a date
+  console.log( new Date(2012, 1, 20, 3, 12) );
+  console.log( new Date('2012-02-20T03:12:00') );
+
+  // Show a weekday
+  function getWeekDay(date) {
+    let weekday = date.getDay();
+    switch(weekday) {
+      case 0: return 'SU';
+      case 1: return 'MO';
+      case 2: return 'TU';
+      case 3: return 'WE';
+      case 4: return 'TH';
+      case 5: return 'FR';
+      case 6: return 'SA';
+    }
+  }
+
+  let date = new Date(2012, 0, 3); // 3 Jan 2012
+  console.log( getWeekDay(date) ); // should output "TU"
+
+  // European weekday
+  function getLocalDay(date) {
+    let weekday = date.getDay();
+    return (weekday == 0 ? 7 : weekday);
+  }
+
+  date = new Date(2012, 0, 3); // 3 Jan 2012
+  console.log( getLocalDay(date) ); // tuesday, should show 2
+
+  // Which day of month was many days ago?
+  function getDateAgo(date, days) {
+    let copyDate = new Date(date.getTime());
+    copyDate.setDate(copyDate.getDate() - days);
+    return copyDate.getDate();
+  }
+
+  date = new Date(2015, 0, 2);
+  console.log( getDateAgo(date, 1) ); // 1, (1 Jan 2015)
+  console.log( getDateAgo(date, 2) ); // 31, (31 Dec 2014)
+  console.log( getDateAgo(date, 365) ); // 2, (2 Jan 2014)
+
+</script>
+</body>
+
+</html>

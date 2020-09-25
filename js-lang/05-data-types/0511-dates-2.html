@@ -1,0 +1,70 @@
+<!DOCTYPE HTML>
+<html>
+
+<body>
+<script>
+  "use strict";
+
+  // Last day of month?
+  function getLastDayOfMonth(year, month) {
+    let date = new Date(year, month + 1, 0);
+    return date.getDate();
+  }
+
+  console.log( getLastDayOfMonth(2012, 0) ); // 31
+  console.log( getLastDayOfMonth(2012, 1) ); // 29
+  console.log( getLastDayOfMonth(2013, 1) ); // 28
+
+  // How many seconds have passed today?
+  function getSecondsToday() {
+    let now = new Date();
+
+    let dayStart = new Date(now.getTime());
+    dayStart.setHours(0, 0, 0, 0);
+
+    return Math.floor((now - dayStart) / 1000);
+  }
+
+  console.log( getSecondsToday() );
+
+  // How many seconds till tomorrow?
+  function getSecondsToTomorrow() {
+    let now = new Date();
+
+    let tomorrow = new Date(now.getTime());
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    tomorrow.setHours(0, 0, 0, 0);
+
+    return Math.floor((tomorrow - now ) / 1000);
+  }
+
+  console.log( getSecondsToTomorrow() );
+
+  // Format the relative date
+  function formatDate(date) {
+    let now = new Date();
+
+    let seconds = Math.floor((now - date) / 1000);
+    if (seconds < 1) return 'right now';
+    if (seconds < 60) return `${seconds} sec. ago`;
+
+    let minutes = Math.floor(seconds / 60);
+    if (minutes < 60) return `${minutes} min. ago`;
+
+    let dayPart = [date.getDate(), date.getMonth() + 1, date.getFullYear()];
+    let hourPart = [date.getHours(), date.getMinutes()];
+
+    let format = number => ('0' + number).slice(-2);
+    let result = dayPart.map(format).join('.') + ' ' + hourPart.map(format).join(':');
+    return result;
+  }
+
+  console.log( formatDate(new Date(new Date - 1)) ); // "right now"
+  console.log( formatDate(new Date(new Date - 30 * 1000)) ); // "30 sec. ago"
+  console.log( formatDate(new Date(new Date - 5 * 60 * 1000)) ); // "5 min. ago"
+  console.log( formatDate(new Date(new Date - 86400 * 1000)) );
+
+</script>
+</body>
+
+</html>
