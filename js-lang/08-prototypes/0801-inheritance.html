@@ -1,0 +1,93 @@
+<!DOCTYPE HTML>
+<html>
+
+<body>
+<script>
+  "use strict";
+
+  // Working with prototype
+  let animal = {
+    jumps: null
+  };
+  let rabbit = {
+    __proto__: animal,
+    jumps: true
+  };
+
+  console.log( rabbit.jumps ); // true
+  delete rabbit.jumps;
+  console.log( rabbit.jumps ); // null
+  delete animal.jumps;
+  console.log( rabbit.jumps ); // undefined
+
+  // Searching algorithm
+  let head = {
+    glasses: 1
+  };
+
+  let table = {
+    pen: 3,
+    __proto__: head
+  };
+
+  let bed = {
+    sheet: 1,
+    pillow: 2,
+    __proto__: table
+  };
+
+  let pockets = {
+    money: 2000,
+    __proto__: bed
+  };
+
+  console.log(pockets.pen) // 3 from table
+  console.log(bed.glasses) // 1 from head
+
+  // Where does it write?
+  animal = {
+    eat() {
+      this.full = true;
+    }
+  };
+
+  rabbit = {
+    __proto__: animal
+  };
+
+  rabbit.eat(); // this = rabbit, rabbit is full
+  console.log(rabbit.full) // true
+  console.log(animal.full) // undefined
+
+  // Why are both hamsters full?
+  let hamster = {
+    stomach: null,
+
+    eat(food) {
+      if (!this.stomach) this.stomach = [];
+      this.stomach.push(food);
+    }
+  };
+
+  let speedy = {
+    __proto__: hamster
+  };
+
+  let lazy = {
+    __proto__: hamster
+  };
+
+  // This one found the food
+  speedy.eat("apple");
+  console.log( speedy.stomach ); // apple
+
+  // Fixed
+  console.log( lazy.stomach ); // null
+
+  console.log(speedy);
+  console.log(lazy);
+
+</script>
+</body>
+
+</html>
