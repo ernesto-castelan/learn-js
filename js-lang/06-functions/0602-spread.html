@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html>
+
+<body>
+<script>
+  "use strict";
+
+  // Rest parameters
+  function showSum(msg, ...numbers) {
+    let total = numbers.reduce((a, b) => a + b, 0);
+    return msg + ': ' + total;
+  }
+
+  console.log( showSum('items', 1, 2, 3) );
+  console.log( showSum('money', 1, 2, 3, 4, 5) );
+
+  // Spread syntax
+  let sales = [3, 4, 5];
+  let expenses = [-1, -2];
+
+  console.log( showSum('sales', ...sales) );
+  console.log( showSum('expenses', ...expenses) );
+  console.log( showSum('total', ...sales, ...expenses) );
+
+</script>
+</body>
+
+</html>

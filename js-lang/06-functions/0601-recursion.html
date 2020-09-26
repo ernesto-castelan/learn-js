@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+<html>
+
+<body>
+<script>
+  "use strict";
+
+  // Sum all numbers till the given one (loop version)
+  function sumToLoop(n) {
+    let result = 0;
+    for (let i = 1; i <= n; i++) {
+      result += i;
+    }
+    return result;
+  }
+
+  console.assert(sumToLoop(1) == 1);
+  console.assert(sumToLoop(2) == 3);
+  console.assert(sumToLoop(4) == 10);
+  console.assert(sumToLoop(100) == 5050);
+
+  console.time('sumToLoop');
+  for (let i = 0; i < 100_000; i++) sumToLoop(1000);
+  console.timeEnd('sumToLoop');
+
+  // Sum all numbers till the given one (recursive version)
+  function sumToRecursive(n) {
+    return (n == 1) ? 1 : (n + sumToRecursive(n - 1));
+  }
+
+  console.assert(sumToRecursive(1) == 1);
+  console.assert(sumToRecursive(2) == 3);
+  console.assert(sumToRecursive(4) == 10);
+  console.assert(sumToRecursive(100) == 5050);
+
+  console.time('sumToRecursive');
+  for (let i = 0; i < 100_000; i++) sumToRecursive(1000);
+  console.timeEnd('sumToRecursive');
+
+  // Sum all numbers till the given one (arithmetic formula version)
+  function sumToFormula(n) {
+    return n * (n + 1) / 2;
+  }
+
+  console.assert(sumToFormula(1) == 1);
+  console.assert(sumToFormula(2) == 3);
+  console.assert(sumToFormula(4) == 10);
+  console.assert(sumToFormula(100) == 5050);
+
+  console.time('sumToFormula');
+  for (let i = 0; i < 100_000; i++) sumToFormula(1000);
+  console.timeEnd('sumToFormula');
+
+</script>
+</body>
+
+</html>
