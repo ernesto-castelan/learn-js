@@ -1,0 +1,64 @@
+<!DOCTYPE HTML>
+<html>
+
+<body>
+<script>
+  "use strict";
+
+  // Set and decrease for counter
+  function makeCounter() {
+
+    let count = 0;
+
+    function counter() {
+      return count++;
+    };
+
+    counter.decrease = function() {
+      return count--;
+    };
+
+    counter.set = function(value) {
+      count = value;
+    }
+
+    return counter;
+  }
+
+  let counter = makeCounter();
+
+  console.log( counter() ); // 0
+  console.log( counter() ); // 1
+
+  counter.set(10);
+  console.log( counter() ); // 10
+
+  counter.decrease();
+  console.log( counter() ); // 10 (instead of 11)
+
+  // Sum with an arbitrary amount of brackets
+  function sum(start) {
+
+    let result = start;
+
+    function doTheSum(val) {
+      result += val;
+      return doTheSum;
+    }
+
+    doTheSum.valueOf = () => result;
+
+    return doTheSum;
+  }
+
+  console.log( sum(1)(2) == 3 );
+  console.log( sum(1)(2)(3) == 6 );
+  console.log( sum(5)(-1)(2) == 6 );
+  console.log( sum(6)(-1)(-2)(-3) == 0 );
+  console.log( sum(0)(1)(2)(3)(4)(5) == 15 );
+  console.log( sum(5) == 5 );
+
+</script>
+</body>
+
+</html>
