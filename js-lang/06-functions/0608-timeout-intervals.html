@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html>
+
+<body>
+<script>
+  "use strict";
+
+  // Output every second (with setInterval)
+  function printNumbers(from, to) {
+    let current = from;
+    let timer = setInterval(function() {
+      console.log('interval ' + current++);
+      if (current > to) clearInterval(timer);
+    }, 1000);
+  }
+
+  printNumbers(5, 10);
+
+  // Output every second (with nested timeouts)
+  function printNumbersNested(from, to) {
+    let current = from;
+    setTimeout(function count() {
+      console.log('timeout ' + current++);
+      if (current <= to) setTimeout(count, 1000);
+    }, 1000);
+  }
+
+  printNumbersNested(5, 10);
+
+  // What will setTimeout show?
+  let i = 0;
+
+  // Timer will start *after* this script is finished
+  setTimeout(() => alert(i), 100); // 100000000
+
+  // assume that the time to execute this function is >100ms
+  for(let j = 0; j < 100000000; j++) {
+    i++;
+  }
+
+</script>
+</body>
+
+</html>
