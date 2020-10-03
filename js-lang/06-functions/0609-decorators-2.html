@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html>
+
+<body>
+<script>
+  "use strict";
+
+  // Debounce decorator
+  function debounce(func, ms) {
+    let timer;
+
+    return function() {
+      clearTimeout(timer);
+      timer = setTimeout( () => func.apply(this, arguments), ms );
+    }
+  }
+
+  // Throttle decorator
+  function throttle(func, ms) {
+    let calls = 0;
+    let holdThis;
+    let holdArgs;
+
+    function wrapper() {
+      if (!calls) {
+        func.apply(this, arguments);
+        calls++;
+
+        setTimeout( () => {
+          if (calls > 1) {
+            calls = 0;
+            wrapper.apply(holdThis, holdArgs);
+          }
+        }, ms )
+      } else {
+        holdThis = this;
+        holdArgs = arguments;
+        calls++;
+      }
+    }
+
+    return wrapper;
+  }
+
+</script>
+</body>
+
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE HTML>
+<html>
+
+<body>
+<script>
+  "use strict";
+
+  // Spy decorator
+  function spy(func) {
+
+    function wrapper() {
+      wrapper.calls.push(Array.from(arguments));
+      return func.apply(this, arguments);
+    }
+
+    wrapper.calls = [];
+
+    return wrapper;
+  }
+
+  function work(a, b) {
+    return a + b;
+  }
+
+  work = spy(work);
+
+  work(1, 2); // 3
+  work(4, 5); // 9
+
+  for (let args of work.calls) {
+    console.log( 'call:' + args.join() ); // "call:1,2", "call:4,5"
+  }
+
+  // Delaying decorator
+  function delay(func, ms) {
+    return function() {
+      setTimeout(() => func.apply(this, arguments), ms)
+    }
+  }
+
+  function f(x) {
+    alert(x);
+  }
+
+  // create wrappers
+  let f1000 = delay(f, 1000);
+  let f1500 = delay(f, 1500);
+
+  f1000("test"); // shows "test" after 1000ms
+  f1500("test"); // shows "test" after 1500ms
+
+</script>
+</body>
+
+</html>
