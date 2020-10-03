@@ -1,0 +1,91 @@
+<!DOCTYPE HTML>
+<html>
+
+<body>
+<script>
+  "use strict";
+
+  // Bound function as a method
+  {
+    function f() {
+      console.log( this ); // null
+    }
+
+    let user = {
+      g: f.bind(null)
+    };
+
+    user.g();
+  }
+
+  // Second bind
+  {
+    function f() {
+      console.log(this.name); // John
+    }
+
+    f = f.bind( {name: "John"} ).bind( {name: "Ann" } );
+
+    f();
+  }
+
+  // Function property after bind
+  {
+    function sayHi() {
+      console( this.name );
+    }
+    sayHi.test = 5;
+
+    let bound = sayHi.bind({
+      name: "John"
+    });
+
+    console.log( bound.test ); // undefined
+  }
+
+  // Fix a function that loses "this"
+  {
+    function askPassword(ok, fail) {
+      let password = prompt("Password?", '');
+      if (password == "rockstar") ok();
+      else fail();
+    }
+
+    let user = {
+      name: 'John',
+
+      loginOk() {
+        alert(`${this.name} logged in`);
+      },
+
+      loginFail() {
+        alert(`${this.name} failed to log in`);
+      },
+
+    };
+
+    askPassword(user.loginOk.bind(user), user.loginFail.bind(user));
+  }
+
+  // Partial application for login
+  {
+    function askPassword(ok, fail) {
+      let password = prompt("Password?", '');
+      if (password == "rockstar") ok();
+      else fail();
+    }
+
+    let user = {
+      name: 'John',
+
+      login(result) {
+        alert( this.name + (result ? ' logged in' : ' failed to log in') );
+      }
+    };
+
+    askPassword(user.login.bind(user, true), user.login.bind(user, false));
+  }
+</script>
+</body>
+
+</html>
