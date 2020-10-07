@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html>
+
+<body>
+<script>
+  "use strict";
+
+  // Finally or just the code?
+  function fnOne(arg) {
+    try {
+      if (arg == 'fail') {
+        console.log('Throw an error');
+        throw new Error('test');
+      } else {
+        console.log('Do the work');
+        return 0;
+      }
+    } catch (e) {
+      console.log('Catch the error');
+    } finally {
+      console.log('Cleanup time!');
+    }
+  }
+
+  fnOne(); // Work and cleanup
+  fnOne('fail'); // Throw, catch and cleanup
+
+  function fnTwo(arg) {
+    try {
+      if (arg == 'fail') {
+        console.log('Throw an error');
+        throw new Error('test');
+      } else {
+        console.log('Do the work');
+        return 0;
+      }
+    } catch (e) {
+      console.log('Rethrow the error');
+      throw e;
+    }
+    console.log('Cleanup time!');
+  }
+
+  fnTwo() // Work (no cleanup)
+  try {
+    fnTwo('fail') // Throw and rethrow (no cleanup)
+  } catch (e) {}
+
+</script>
+</body>
+
+</html>
