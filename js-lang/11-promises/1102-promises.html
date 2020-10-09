@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html>
+
+<body>
+<script>
+  "use strict";
+
+  // Re-resolve a promise?
+  let promise = new Promise(function(resolve, reject) {
+    resolve(1);
+
+    // You can only resolve or reject once
+    setTimeout(() => resolve(2), 1000); // Is ignored
+  });
+
+  promise.then(console.log); // Imediately resolved to 1
+
+  // Delay with a promise
+  function delay(ms) {
+    return new Promise(function(resolve, reject){
+      setTimeout(resolve, ms);
+    });
+  }
+
+  delay(3000).then(() => console.log('Runs after 3 seconds'));
+
+</script>
+</body>
+
+</html>
