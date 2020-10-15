@@ -1,0 +1,83 @@
+<!DOCTYPE HTML>
+<html>
+<head><meta charset="utf-8"/></head>
+
+
+<body>
+<script>
+  "use strict";
+
+  // Changing "prototype"
+  {
+    function Rabbit() {}
+    Rabbit.prototype = {
+      eats: true
+    };
+    let rabbit = new Rabbit();
+
+    console.log( rabbit.eats ); // true
+  }
+  {
+    function Rabbit() {}
+    Rabbit.prototype = {
+      eats: true
+    };
+    let rabbit = new Rabbit();
+
+    Rabbit.prototype = {};
+    console.log( rabbit.eats ); // true, the prototype of existing objects is not changed
+  }
+  {
+    function Rabbit() {}
+    Rabbit.prototype = {
+      eats: true
+    };
+    let rabbit = new Rabbit();
+
+    Rabbit.prototype.eats = false;
+    console.log( rabbit.eats ); // false, the object points to the prototype which is modified
+  }
+  {
+    function Rabbit() {}
+    Rabbit.prototype = {
+      eats: true
+    };
+    let rabbit = new Rabbit();
+
+    delete rabbit.eats;
+    console.log( rabbit.eats ); // true, deletion is not passed the the prototype
+  }
+  {
+    function Rabbit() {}
+    Rabbit.prototype = {
+      eats: true
+    };
+    let rabbit = new Rabbit();
+
+    delete Rabbit.prototype.eats;
+    console.log( rabbit.eats ); // undefined, the object points to the prototype 
+                                // and deletion applies directly to it
+  }
+
+  // Create an object with the same constructor
+  function goodExample() {
+    this.demo = 'good value';
+  }
+  let good = new goodExample();
+  let otherGood = new good.constructor(); // This works with the default prototype
+
+  console.log(good.demo);
+  console.log(otherGood.demo);
+
+  function badExample() {}
+  badExample.prototype = {demo:'bad value'}; // Custom prototype does not set 'constructor'
+  let bad = new badExample();
+  let otherBad = new bad.constructor(); // This creates a plain object
+
+  console.log(bad.demo);
+  console.log(otherBad.demo);
+
+</script>
+</body>
+
+</html>
