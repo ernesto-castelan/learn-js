@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<html>
+<head><meta charset="utf-8"/></head>
+
+<body>
+<script>
+  "use strict";
+
+  // Error creating an instance
+  class Animal {
+    constructor(name) {
+      this.name = name;
+    }
+  }
+
+  class Rabbit extends Animal {
+    constructor(name) {
+      super(name); // Must call to super
+      this.created = Date.now();
+    }
+  }
+
+  let rabbit = new Rabbit("White Rabbit");
+  alert(rabbit.name);
+</script>
+
+<script src="0902-clock.js"></script>
+<script src="0902-extended-clock.js"></script>
+<script>
+  let clock = new ExtendedClock({template: 'h:m:s', precision: 5000});
+  clock.start();
+</script>
+</body>
+
+</html>
